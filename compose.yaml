@@ -1,0 +1,42 @@
+services:
+  k6:
+    image: grafana/k6:latest
+    environment:
+      - K6_OTEL_METRIC_PREFIX=k6_
+      - K6_OTEL_SERVICE_NAME=k6-api-test
+      - K6_OTEL_EXPORTER_TYPE=http
+      - K6_OTEL_HTTP_EXPORTER_INSECURE=true
+      - K6_OTEL_TLS_INSECURE_SKIP_VERIFY=true
+      - K6_OTEL_HTTP_EXPORTER_ENDPOINT=lgtm:4318
+    volumes:
+      - ./scripts:/scripts
+    networks:
+      - my-network
+    command: ["run", "--insecure-skip-tls-verify", "--vus", "3000", "--duration", "120s", "--tag", "test-id=123", "-o", "experimental-opentelemetry", "/scripts/script.js"]
+    depends_on:
+      - lgtm
+      - api
+
+  lgtm:
+    image: grafana/otel-lgtm:latest
+    volumes:
+      - ./grafana:/grafana
+    ports:
+      - 7070:3000
+      - 4317:4317
+      - 4318:4318
+    networks:
+      - my-network
+
+  api:
+    image: dodopredo/api-to-k6-test:1.0
+    ports:
+      - 8000:8000
+    networks:
+      - my-network
+    depends_on:
+      - lgtm
+
+networks:
+  my-network:
+    driver: bridge
