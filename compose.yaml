@@ -30,7 +30,7 @@ services:
       - my-network
 
   api:
-    image: dodopredo/api-to-k6-test:1.0
+    image: dodopredo/api-to-k6-test:1.5
     ports:
       - 8000:8000
     networks:
