@@ -40,3 +40,65 @@ td {
     border-top: 1px solid black;
     padding: 10px 20px;
 }
+
+#user-creation-form {
+    background-color: grey;
+    display: none;
+    flex-direction: column;
+    gap: 20px;
+    padding: 30px;
+    position: absolute;
+    left: calc(50vw - 200px);
+    top: 200px;
+    width: 400px;
+}
+
+#user-creation-form section {
+    display: flex;
+    flex-direction: column;
+}
+
+#user-creation-form input {
+    height: 30px;
+}
+
+#user-creation-form select {
+    height: 35px;
+}
+
+
+
+
+
+#user-edit-form {
+    background-color: grey;
+    display: none;
+    flex-direction: column;
+    gap: 20px;
+    padding: 30px;
+    position: absolute;
+    left: calc(50vw - 200px);
+    top: 200px;
+    width: 400px;
+}
+
+#user-edit-form section {
+    display: flex;
+    flex-direction: column;
+}
+
+#user-edit-form input {
+    height: 30px;
+}
+
+#user-edit-form select {
+    height: 35px;
+}
+
+.delete-user-button {
+    margin-left: 5px;
+}
+
+.edit-user-button {
+    margin-right: 5px;
+}

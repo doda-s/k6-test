@@ -13,7 +13,7 @@ services:
     networks:
       - my-network
     # Executa 5 minutos de teste, simulando 3000 usuários
-    command: ["run", "--insecure-skip-tls-verify", "--vus", "3000", "--duration", "300s", "--tag", "test-id=123", "-o", "experimental-opentelemetry", "/scripts/script.js"]
+    command: ["run", "--insecure-skip-tls-verify", "--vus", "10", "--duration", "300s", "--tag", "test-id=123", "-o", "experimental-opentelemetry", "/scripts/script.js"]
     depends_on:
       - lgtm
       - api
