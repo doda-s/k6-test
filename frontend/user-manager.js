@@ -20,6 +20,12 @@ const cancelUserEdit = document.querySelector("#user-edit-cancel")
 const editFormInputs = document.querySelectorAll("#user-edit-form > section > input")
 const editFormSelector = document.querySelector("#edit-gender-select")
 
+const requestStatusSpan = document.querySelectorAll(".request-status")
+
+const textBox = document.querySelector("#text-box")
+const closeTextBoxButton = textBox.querySelector("button")
+const textBoxSpan = textBox.querySelector("span")
+
 const refreshTable = () => {
     fetch("http://localhost:8000/forms")
     .then(response => {
@@ -48,6 +54,11 @@ const refreshTable = () => {
                     method: 'DELETE'
                 }).then(response => {
                     if (!response.ok) throw new Error("Error to delete user!")
+                    return response.json()
+                })
+                .then(data => {
+                    textBoxSpan.innerHTML = data.message 
+                    textBox.style.display = "flex"
                     refreshTable()
                 })
             })
@@ -58,6 +69,9 @@ const refreshTable = () => {
             button.addEventListener('click', () => {
                 editUserForm.name = button.parentElement.parentElement.id
                 editUserForm.style.display = "flex"
+                requestStatusSpan.forEach(span => {
+                    span.innerHTML = ""    
+                })
             })
         })
     })
@@ -79,6 +93,9 @@ const resetForm = (type) => {
 refreshTable()
 
 createUserButton.addEventListener('click', () => {
+    requestStatusSpan.forEach(span => {
+        span.innerHTML = ""    
+    })
     userCreationForm.style.display = "flex"
 })
 
@@ -111,6 +128,9 @@ submitUserCreationForm.addEventListener("click", () => {
     .then(response => response.json())
     .then(data => {
         resetForm("creation")
+        requestStatusSpan.forEach(span => {
+            span.innerHTML = data.message
+        })
         refreshTable()
     })
 })
@@ -133,6 +153,9 @@ submitUserEdit.addEventListener('click', () => {
     })
     .then(response => response.json())
     .then(data => {
+        requestStatusSpan.forEach(span => {
+            span.innerHTML = data.message
+        })
         resetForm()
         refreshTable()
     })
@@ -142,4 +165,8 @@ cancelUserEdit.addEventListener('click', () => {
     editUserForm.name = ""
     resetForm()
     editUserForm.style.display = "none"
+})
+
+closeTextBoxButton.addEventListener('click', () => {
+    textBox.style.display = "none"
 })

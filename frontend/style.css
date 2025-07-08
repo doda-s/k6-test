@@ -102,3 +102,19 @@ td {
 .edit-user-button {
     margin-right: 5px;
 }
+
+#text-box {
+    display: flex;
+    background-color: gray;
+    gap: 10px;
+    margin: 0px 40px;
+    padding: 10px;
+    width: fit-content;
+}
+
+#text-box button {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    padding: 2px;
+}

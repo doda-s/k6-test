@@ -8,4 +8,4 @@ mkdir -p "$DIR"
 echo "Diretório criado!"
 fi
 
-docker compose up
+docker compose up -d

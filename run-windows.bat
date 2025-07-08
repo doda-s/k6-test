@@ -11,7 +11,7 @@ if exist "%DIR%" (
     echo Diretório criado!
 )
 
-docker compose up
+docker compose up -d
 
 endlocal
 pause

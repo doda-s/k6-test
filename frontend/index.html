@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./frontend/style.css">
+    <link rel="stylesheet" href="./style.css">
     <title>Forms</title>
 </head>
 <body>
@@ -23,6 +23,7 @@
     </table>
     <form id="user-creation-form">
         <h2>Criar Usuário</h2>
+        <span class="request-status">Usuário Editado!</span>
         <section>
             <label for="name-input">Nome</label>
             <input type="text" name="name-input" id="name-input">
@@ -46,6 +47,7 @@
     </form>
     <form id="user-edit-form">
         <h2>Editar Usuário</h2>
+        <span class="request-status">Usuário Editado!</span>
         <section>
             <label for="edit-name-input">Nome</label>
             <input type="text" name="edit-name-input" id="edit-name-input">
@@ -67,7 +69,10 @@
             <button id="user-edit-cancel" type="button">Cancelar</button>
         </section>
     </form>
+    <span id="text-box">
+        <span class="request-status">Teste!</span><button id="close-text-box">X</button>
+    </span>
 
-    <script src="./frontend/user-manager.js"></script>
+    <script src="./user-manager.js"></script>
 </body>
 </html>
