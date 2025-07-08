@@ -12,7 +12,8 @@ services:
       - ./scripts:/scripts
     networks:
       - my-network
-    command: ["run", "--insecure-skip-tls-verify", "--vus", "3000", "--duration", "120s", "--tag", "test-id=123", "-o", "experimental-opentelemetry", "/scripts/script.js"]
+    # Executa 5 minutos de teste, simulando 3000 usuários
+    command: ["run", "--insecure-skip-tls-verify", "--vus", "3000", "--duration", "300s", "--tag", "test-id=123", "-o", "experimental-opentelemetry", "/scripts/script.js"]
     depends_on:
       - lgtm
       - api
@@ -20,7 +21,7 @@ services:
   lgtm:
     image: grafana/otel-lgtm:latest
     volumes:
-      - ./grafana:/grafana
+      - ./grafana:/data/grafana/data
     ports:
       - 7070:3000
       - 4317:4317
