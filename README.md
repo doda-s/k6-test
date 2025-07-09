@@ -2,17 +2,23 @@
 
 Todos os passos estão automatizados através de arquivos em lote. Você pode apenas executá-los que todo o processo será feito automaticamente.
 
-Execute o arquivo `run` de acordo com o seu sistema operacional:
-- `run-linux.sh`
+## Iniciar Aplicação no Linux
 ```bash
 sh run-linux.sh
 ```
-Para executar juntamente com os testes do Playwright, você pode adicionar a flag `--test`. Opcionalmente você pode fazer o teste em modo UI, basta adicionar a flag `--ui`
+Para executar juntamente com os testes do Playwright, você pode adicionar a flag `--test`. Opcionalmente você pode fazer o teste em modo UI, basta adicionar a flag `--ui`.
 
 ```bash
 sh run-linux.sh --test --ui
 ```
-- `run-windows.bat`
+## Iniciar Aplicação no Windows
+
+```shell
+./run-windows.bat
+```
+
+Para executar juntamente com os testes do Playwright, você pode adicionar a flag `--test`. Opcionalmente você pode fazer o teste em modo UI, basta adicionar a flag `--ui`.
+
 ```shell
 ./run-windows.bat --test --ui
 ```
@@ -26,7 +32,7 @@ Caso queira executar os testes manualmente, você pode executar os tópicos a se
 
 ## Teste de API com K6
 
-Para realizar o teste da API com o K6, basta iniciar o Docker Compose:
+Para realizar o teste da API com o K6, basta criar a pasta `/grafana` caso não exista, e iniciar o Docker Compose:
 ```bash
 docker compose up
 ``` 
@@ -39,10 +45,10 @@ Todas as métricas podem ser visualizadas no dashboard do Grafana, por meio do L
 
 ## Teste com Playwright
 
-Você pode rodar o front de forma interativa utilizando `node frontend.js`, e depois acessando `http://127.0.0.1:3000`. Através do front, é possível ver a lista de formulários cadastrados, cadastrar um novo usuário, editar um usuário existente e deletar um usuário.
-
 > [!IMPORTANT]
 > Para prosseguir, é necessário que o backend esteja rodando.
+
+Você pode rodar o front de forma interativa utilizando `node frontend.js`, e depois acessando `http://127.0.0.1:3000`. Através do front, é possível ver a lista de formulários cadastrados, cadastrar um novo usuário, editar um usuário existente e deletar um usuário.
 
 ### Teste do Front
 
