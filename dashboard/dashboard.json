@@ -40,13 +40,13 @@
               }
             ]
           },
-          "unit": "bytes"
+          "unit": "decbytes"
         },
         "overrides": [
           {
             "matcher": {
               "id": "byRegexp",
-              "options": "/{__name__=\"k6_data_received_bytes_total\", job=\"k6-api-test\", scenario=\"default\", service_name=\"k6-api-test\", service_version=\"1.1.0\", test_id=\"123\"}/"
+              "options": "/k6_data_received_bytes_total/"
             },
             "properties": [
               {
@@ -58,7 +58,7 @@
           {
             "matcher": {
               "id": "byRegexp",
-              "options": "/{__name__=\"k6_data_sent_bytes_total\"}/"
+              "options": "/k6_data_sent_bytes_total/"
             },
             "properties": [
               {
@@ -70,7 +70,7 @@
         ]
       },
       "gridPos": {
-        "h": 8,
+        "h": 12,
         "w": 12,
         "x": 0,
         "y": 0
@@ -128,7 +128,7 @@
           "useBackend": false
         }
       ],
-      "title": "I/O Byte Count",
+      "title": "I/O Byte Count - K6",
       "type": "stat"
     },
     {
@@ -191,7 +191,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
+        "h": 12,
         "w": 12,
         "x": 12,
         "y": 0
@@ -231,7 +231,7 @@
           "useBackend": false
         }
       ],
-      "title": "Request Failed Ocurred",
+      "title": "Request Failed Ocurred - K6",
       "type": "timeseries"
     },
     {
@@ -294,10 +294,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 8,
+        "h": 12,
         "w": 12,
         "x": 0,
-        "y": 8
+        "y": 12
       },
       "id": 4,
       "options": {
@@ -322,7 +322,159 @@
           },
           "disableTextWrap": false,
           "editorMode": "builder",
-          "expr": "k6_http_reqs_total{expected_response=\"true\"}",
+          "expr": "k6_http_reqs_total{name=\"http://api:8000/forms\", status=\"200\"}",
+          "fullMetaSearch": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "A",
+          "useBackend": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "k6_http_reqs_total{name=\"http://api:8000/forms/new\", status=\"200\"}",
+          "fullMetaSearch": false,
+          "hide": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "B",
+          "useBackend": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "k6_http_reqs_total{name=\"http://api:8000/forms/delete\", status=\"200\"}",
+          "fullMetaSearch": false,
+          "hide": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "C",
+          "useBackend": false
+        },
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "k6_http_reqs_total{name=\"http://api:8000/forms/update\", status=\"200\"}",
+          "fullMetaSearch": false,
+          "hide": false,
+          "includeNullMetadata": true,
+          "instant": false,
+          "legendFormat": "__auto",
+          "range": true,
+          "refId": "D",
+          "useBackend": false
+        }
+      ],
+      "title": "Success Request Count - K6",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "prometheus"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisBorderShow": false,
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "barWidthFactor": 0.6,
+            "drawStyle": "line",
+            "fillOpacity": 0,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "auto",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green"
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 12,
+        "w": 12,
+        "x": 12,
+        "y": 12
+      },
+      "id": 5,
+      "options": {
+        "legend": {
+          "calcs": [],
+          "displayMode": "list",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "hideZeros": false,
+          "mode": "single",
+          "sort": "none"
+        }
+      },
+      "pluginVersion": "12.0.2",
+      "targets": [
+        {
+          "datasource": {
+            "type": "prometheus",
+            "uid": "prometheus"
+          },
+          "disableTextWrap": false,
+          "editorMode": "builder",
+          "expr": "k6_vus",
           "fullMetaSearch": false,
           "includeNullMetadata": true,
           "instant": false,
@@ -332,7 +484,7 @@
           "useBackend": false
         }
       ],
-      "title": "Request Count",
+      "title": "VUs Count - K6",
       "type": "timeseries"
     }
   ],
@@ -344,12 +496,12 @@
     "list": []
   },
   "time": {
-    "from": "now-5m",
+    "from": "now-15m",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "browser",
   "title": "K6 Tests",
   "uid": "603db3b3-7ede-4935-83bd-15985c46d0a6",
-  "version": 7
+  "version": 8
 }
