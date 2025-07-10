@@ -1,6 +1,12 @@
 # Teste de Sistema Web
 
-Todos os passos estão automatizados através de arquivos em lote. Você pode apenas executá-los que todo o processo será feito automaticamente.
+Para iniciar, primeiro instale todos os packages do Node. Utilize o comando:
+
+```bash
+npm install
+```
+
+A inicialização do sistema está automatizado através de arquivos em lote. Você pode apenas executá-los que todo o processo será feito automaticamente.
 
 ## Iniciar Aplicação no Linux
 ```bash
@@ -25,8 +31,8 @@ Para executar juntamente com os testes do Playwright, você pode adicionar a fla
 
 O Docker Compose será iniciado automaticamente com todo o sistema. Em seguida, caso tenha adicionado as flags de teste, os testes serão executados. Por ultimo, um servidor local com o frontend irá subir.
 
-- Endereço do Grafana: `http://localhost:7070`
-- Endereço do frontend: `http://127.0.0.1:3000`
+- **Endereço do Grafana**: http://localhost:7070
+- **Endereço do frontend**: http://127.0.0.1:3000
 
 Caso queira executar os testes manualmente, você pode executar os tópicos a seguir.
 
@@ -37,7 +43,7 @@ Para realizar o teste da API com o K6, basta criar a pasta `/grafana` caso não 
 docker compose up
 ``` 
 
-Quando os containers subirem, automaticamente os testes do K6 iniciam. Por padrão, o teste demora 1 minutos, e utiliza 10 VUs. Isso pode ser alterado no arquivo `compose.yaml`.
+Quando os containers subirem, automaticamente os testes do K6 iniciam. Por padrão, o teste é dividido em 6 estágiso, e o tempo total do teste é de aproximadamente 3 minutos e 30 segundos. Você pode verificar e alterar as configurações do teste no arquivo `scripts/script.js`.
 
 Todas as métricas podem ser visualizadas no dashboard do Grafana, por meio do LGTM. Você pode acessar o dashboard com `http://localhost:7070`
 > [!TIP]
@@ -63,3 +69,8 @@ npx playwright test
 ```bash
 npx playwright test --ui
 ```
+
+## Notas
+
+- Os testes via Playwright não estão funcionando como o eperado.
+- Os testes via Playwright não estão iniciando corretamente por meio do arquivo `run-linux.sh`.
