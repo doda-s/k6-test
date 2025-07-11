@@ -41,10 +41,9 @@ echo "Starting Docker containers..."
 docker compose up -d
 echo "Done."
 
-echo "Starting tests..."
-sleep 10
-
 if [ "$testfrontend" = true ]; then
+    echo "Starting tests..."
+    sleep 10
     if [ "$testfrontendui" = true ]; then
         npx playwright test --ui &
         playwright_pid=$!

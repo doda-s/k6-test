@@ -35,10 +35,9 @@ echo Starting Docker containers...
 docker compose up -d
 echo Done.
 
-echo Starting tests...
-powershell -command "Start-Sleep -s 10"
-
 if !testfrontend!==true (
+    echo Starting tests...
+    powershell -command "Start-Sleep -s 10"
     if !testfrontendui!==true (
         start cmd /k "npx playwright test --ui"
         goto startfrontserver
